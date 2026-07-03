@@ -1,0 +1,16 @@
+=>Authentication 
+--  register (user ka data save krna 2. user ko token dena  )
+-- login    
+--logout(token blacklisting)
+-- otp registration
+
+
+=>post 
+--create 
+--can see feed
+--like post
+--save post
+
+=> users
+--following
+--followers

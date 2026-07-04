@@ -5,7 +5,7 @@
 -- otp registration
 
 
-=>post 
+=>post  ({ caption:string, img_url =string, user:userId, createdAt:Date-time})
 --create 
 --can see feed
 --like post

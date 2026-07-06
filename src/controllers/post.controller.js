@@ -17,7 +17,15 @@ async function createPostController(req, res) {
     });
   }
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
+    return res.status(401).json({
+      message: "user not authorized",
+    });
+  }
+
   console.log(decoded);
 
   const file = await imagekit.files.upload({

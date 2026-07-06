@@ -48,6 +48,31 @@ async function createPostController(req, res) {
   });
 }
 
+async function getPostController(req, res) {
+  const token = req.cookies.token;
+
+  let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
+    return res.status(401).json({
+      message: "invalid token , unauthorized access",
+    });
+  }
+
+  const userId = decoded.id;
+
+  const posts = await postModel.find({
+    user: userId,
+  });
+
+  res.status(401).json({
+    message: "posts fetched successfully ",
+    posts,
+  });
+}
+
 module.exports = {
   createPostController,
+  getPostController,
 };

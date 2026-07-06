@@ -66,7 +66,7 @@ async function getPostController(req, res) {
     user: userId,
   });
 
-  res.status(401).json({
+  res.status(201).json({
     message: "posts fetched successfully ",
     posts,
   });

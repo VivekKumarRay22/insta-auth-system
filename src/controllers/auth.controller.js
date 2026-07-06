@@ -17,7 +17,7 @@ async function registerController(req, res) {
     });
   }
 
-  const hash = bcrypt.hash(password, 10);
+  const hash = await bcrypt.hash(password, 10);
 
   const user = await userModel.create({
     username,
@@ -33,7 +33,7 @@ async function registerController(req, res) {
    */
   const token = jwt.sign(
     {
-      user: user._id,
+      id: user._id,
     },
     process.env.JWT_SECRET,
     { expiresIn: "1d" },

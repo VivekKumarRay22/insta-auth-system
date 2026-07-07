@@ -50,7 +50,11 @@ async function createPostController(req, res) {
 
 async function getPostController(req, res) {
   const token = req.cookies.token;
-
+  if (!token) {
+    return res.status(401).json({
+      message: "token not provided , unauthorized access",
+    });
+  }
   let decoded;
   try {
     decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -72,7 +76,48 @@ async function getPostController(req, res) {
   });
 }
 
+async function getPostDetailsController(req, res) {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(401).json({
+      message: "token not provided , unauthorised access",
+    });
+  }
+
+  let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
+    return res.status(401).json({
+      message: "invalid token, unauthorized access",
+    });
+  }
+
+  const userId = decoded.id;
+  const postId = req.params.postId;
+
+  const post = await postModel.findById(postId);
+  if (!post) {
+    return res.status(404).json({
+      message: "Not Found",
+    });
+  }
+
+  const isValidUser = postId.user.toString() === userId;
+  if (!isValidUser) {
+    return res.status(403).json({
+      message: "Forbidden content ",
+    });
+  }
+
+  res.status(200).json({
+    message: "details fetched successfully!",
+    post,
+  });
+}
+
 module.exports = {
   createPostController,
   getPostController,
+  getPostDetailsController,
 };

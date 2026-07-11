@@ -66,4 +66,37 @@ async function unfollowUserController(req, res) {
   });
 }
 
-module.exports = { followUserController, unfollowUserController };
+async function acceptFollowRequest(req, res) {
+  const followerUsername = req.params.username;
+  const followingUsername = req.user.username;
+
+
+  const accepted = await followModel.findOneAndUpdate(
+    {
+      follower: followerUsername,
+      following: followingUsername,
+      status: "pending",
+    },
+    {
+      status: "accepted",
+    },
+    { new: true },
+  );
+
+  if (!accepted) {
+    return res.status(404).json({
+      message: "follow request not found",
+    });
+  }
+
+  res.status(200).json({
+    message: "follow request accepted",
+    follow: accepted,
+  });
+}
+
+module.exports = {
+  followUserController,
+  unfollowUserController,
+  acceptFollowRequest,
+};

@@ -16,4 +16,7 @@ userRouter.post(
   userController.unfollowUserController,
 );
 
+
+userRouter.patch("/follow/accept/:username",identifyUser,userController.acceptFollowRequest)
+
 module.exports = userRouter;

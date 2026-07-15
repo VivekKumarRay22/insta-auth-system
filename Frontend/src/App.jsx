@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
+import AppRoutes from "./AppRoutes";
+import "./style.scss";
 
 const App = () => {
-  return (
-    <div>App</div>
-  )
-}
+  return <AppRoutes />;
+};
 
-export default App
+export default App;

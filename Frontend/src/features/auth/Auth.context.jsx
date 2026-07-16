@@ -7,11 +7,11 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (email, password) => {
+  const handleLogin = async (username, password) => {
     setLoading(true);
 
     try {
-      const response = await login(email, password);
+      const response = await login(username, password);
       setUser(response.user);
     } catch (error) {
       console.log(error);

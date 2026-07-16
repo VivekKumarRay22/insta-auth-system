@@ -1,9 +1,9 @@
 import { createContext, useState } from "react";
-import { login, register, getMe } from "../auth/services/auth.api";
+import { login, register, getMe } from "./services/auth.api";
 
-const authContext = createContext();
+export const AuthContext = createContext();
 
-export function authProvider({ children }) {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -33,8 +33,10 @@ export function authProvider({ children }) {
   };
 
   return (
-    <authContext.Provider value={{user,loading,handleLogin,handleRegister}}>
-        {children}
-    </authContext.Provider>
-  )
+    <AuthContext.Provider
+      value={{ user, loading, handleLogin, handleRegister }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }

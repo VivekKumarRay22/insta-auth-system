@@ -1,6 +1,6 @@
 import React from "react";
 import "../style/form.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
@@ -9,13 +9,22 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { handleLogin } = useAuth();
+  const { handleLogin, loading } = useAuth();
+
+  const navigate = useNavigate()
+
+if (loading) {
+  return (
+    <h1>Loading...</h1>
+  )
+}
 
   async function submitHandler(e) {
     e.preventDefault();
 
     handleLogin(username, password).then((res) => {
       console.log(res);
+      navigate("/")
     });
   }
 

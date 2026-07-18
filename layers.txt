@@ -1,0 +1,19 @@
+1. UI LAYER
+
+- user ko ui dikhana or navigate krna
+
+2. HOOKS LAYER
+
+- manage STATE and API LAYER
+
+3. STATE LAYER
+
+- state manage
+  -> loading...
+  -> user
+  -> post list
+  -> erro
+
+4. API LAYER
+
+- Backend se communicate krna

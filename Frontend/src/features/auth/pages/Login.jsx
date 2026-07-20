@@ -1,58 +1,46 @@
 import React from "react";
 import "../style/form.scss";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useState } from "react";
+import { Link } from "react-router";
 import { useAuth } from "../hooks/useAuth";
+import { useState } from "react";
 
 const Login = () => {
+  const { user, loading, handleLogin } = useAuth();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { handleLogin, loading } = useAuth();
-
-  const navigate = useNavigate()
-
-if (loading) {
-  return (
-    <h1>Loading...</h1>
-  )
-}
-
-  async function submitHandler(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    handleLogin(username, password).then((res) => {
-      console.log(res);
-      navigate("/")
-    });
-  }
+    await handleLogin(username,password)
+
+    console.log("userlogged in");
+    
+  };
 
   return (
     <main>
       <div className="form-container">
         <h1>Login</h1>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={handleSubmit}>
           <input
-            onInput={(e) => {
-              setUsername(e.target.value);
-            }}
+            onInput={(e) => {setUsername(e.target.value);}}
             type="text"
-            placeholder="Enter Your Username"
+            name="username"
+            id="username"
+            placeholder="Enter Username"
           />
-          <input
-            onInput={(e) => setPassword(e.target.value)}
+          <input onInput={(e)=>{setPassword(e.target.value)}}
             type="password"
             name="password"
-            placeholder="Enter Your Password"
+            id="password"
+            placeholder="Enter Password"
           />
-          <button>Submit</button>
+          <button className="button primary-button">Login</button>
         </form>
         <p>
-          Don't have an account?{" "}
-          <Link className="toggleAuthForm" to="/register">
-            Register
-          </Link>
+          Don't have an account? <Link to={"/register"}>Create Account</Link>
         </p>
       </div>
     </main>

@@ -188,7 +188,7 @@ Feel free to fork this repository and submit a pull request.
 
 GitHub: https://github.com/VivekKumarRay22
 
-LinkedIn: *(Add your LinkedIn profile here)*
+LinkedIn: https://www.linkedin.com/in/vivek-kumar-ray-25082a226/
 
 ---
 

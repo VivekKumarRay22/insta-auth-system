@@ -1,6 +1,6 @@
 import React from "react";
 import "../style/form.scss";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 import { useState } from "react";
 
@@ -10,14 +10,21 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await handleLogin(username,password)
+    await handleLogin(username, password);
 
-    console.log("userlogged in");
-    
+    navigate("/")
   };
+
+ if (loading) {
+  return <main>
+    <h1>Loading...</h1>
+  </main>
+ }
 
   return (
     <main>
@@ -25,13 +32,18 @@ const Login = () => {
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <input
-            onInput={(e) => {setUsername(e.target.value);}}
+            onInput={(e) => {
+              setUsername(e.target.value);
+            }}
             type="text"
             name="username"
             id="username"
             placeholder="Enter Username"
           />
-          <input onInput={(e)=>{setPassword(e.target.value)}}
+          <input
+            onInput={(e) => {
+              setPassword(e.target.value);
+            }}
             type="password"
             name="password"
             id="password"

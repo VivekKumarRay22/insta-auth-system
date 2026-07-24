@@ -1,27 +1,50 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { useAuth } from "../hooks/useAuth"
+
+
 const Register = () => {
-  const handleSubmit = (e) => {
+
+  const { loading, handleRgister } = useAuth()
+
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const navigate = useNavigate('/')
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    await handleRgister(username,email,password)
+    navigate('/')
   };
+
+  if (loading) {
+    return (<main> <h1>Loading...</h1></main>)
+  }
+
   return (
     <main>
       <div className="form-container">
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
           <input
+            onChange={(e) => { setUsername(e.target.value) }}
             type="text"
             name="username"
             id="username"
             placeholder="Enter Username"
           />
           <input
+            onChange={(e) => { setEmail(e.target.value) }}
             type="text"
             name="email"
             id="email"
             placeholder="Enter Email"
           />
           <input
+            onChange={(e) => { setPassword(e.target.value) }}
             type="password"
             name="password"
             id="password"

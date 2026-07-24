@@ -1,0 +1,57 @@
+.feed-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .feed {
+        max-width: 300px;
+        width: 100%;
+
+
+        .posts {
+            width: 100%;
+
+            .post {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+                background-color: #898FAC;
+
+                padding-inline: .5rem;
+                padding-block: .5rem;
+
+
+                .user {
+                    display: flex;
+                    gap: 0.5rem;
+                    align-items: center;
+
+
+                    .img-wrapper {
+                        border-radius: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: 2px solid rgba(255, 0, 0, 0);
+
+                        background: conic-gradient( from -15deg, rgb(128, 0, 109),rgb(128, 0, 117), rgb(255, 47, 0), rgb(255, 187, 0),rgb(128, 0, 107),) border-box;
+                    }
+
+                    img {
+                        width: 2.5rem;
+                        aspect-ratio: 1/1;
+                        border-radius: 50%;
+                    }
+                }
+
+                img {
+                    width: 100%;
+                }
+
+            }
+        }
+
+    }
+
+}

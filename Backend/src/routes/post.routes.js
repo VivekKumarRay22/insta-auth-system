@@ -14,8 +14,8 @@ postRouter.post("/",upload.single("image"),identifyUser,postController.createPos
 postRouter.get("/",identifyUser, postController.getPostController);
 
 /**
- * GET api/posts/details/:postId
- * - return details about post with id , also check whether the post belongs to the user that the request come from
+ * @route GET api/posts/details/:postId
+ * - @desc return details about post with id , also check whether the post belongs to the user that the request come from
  */
 
 postRouter.get("/details/:postId",identifyUser, postController.getPostDetailsController)
@@ -26,5 +26,11 @@ postRouter.get("/details/:postId",identifyUser, postController.getPostDetailsCon
  */
 postRouter.post("/like/:postId", identifyUser, postController.likePostController)
 
+/**
+ * @route /api/posts/feed
+ * @desc get all the post created in the DB
+ * @access private
+ */
+postRouter.get("/feed",identifyUser,postController.getFeedController)
 
 module.exports = postRouter;

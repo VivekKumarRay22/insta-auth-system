@@ -6,7 +6,7 @@ const api = axios.create({
     withCredentials: true
 })
 
-async function getFeed() {
-    const response = await api.get("/posts/feed")
+export async function getFeed() {
+    const response = await api.get("/api/posts/feed")
     return response.data
 }

@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const PostContext = createContext()
+export const PostContext = createContext()
 
 export const PostContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)

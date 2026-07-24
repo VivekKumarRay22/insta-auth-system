@@ -11,6 +11,10 @@
         .posts {
             width: 100%;
 
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+            
             .post {
                 width: 100%;
                 display: flex;

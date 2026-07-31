@@ -10,3 +10,21 @@ export async function getFeed() {
     const response = await api.get("/api/posts/feed")
     return response.data
 }
+
+/**
+ * * sending file frontend to backend is different (go -> backend -> upload (same_name_use_here))
+ * @param {*} imageFile 
+ * @param {*} caption 
+ */
+
+export async function createPost(imageFile, caption) {
+
+    const fromData = new FormData()
+    FormData.append("image", imageFilemage)
+    FormData.append("caption", caption)
+
+    const response = await api.post("/api/posts", formData)
+
+    return response.data
+
+}

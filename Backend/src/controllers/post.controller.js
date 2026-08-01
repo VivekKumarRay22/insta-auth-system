@@ -97,7 +97,7 @@ async function getFeedController(req, res) {
 * db.collection.find().sort({ field: 1 }) // Ascending
 * db.collection.find().sort({ field: -1 }) // Descending   
 */
-  const posts = await Promise.all((await postModel.find().sort({ _id: -1 }).populate("user").lean())
+  const posts = await Promise.all((await postModel.find().populate("user").lean())
     .map(async (post) => {
 
       /** 

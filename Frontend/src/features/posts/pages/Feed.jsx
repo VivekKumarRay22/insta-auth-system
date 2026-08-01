@@ -25,7 +25,7 @@ const Feed = () => {
         <div className="posts">
           {feed.map(post => {
             return <Post user={post.user} post={post} />
-          })}
+          }).reverse()}
         </div>
       </div>
     </main>

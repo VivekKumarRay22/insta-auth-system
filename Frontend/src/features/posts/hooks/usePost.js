@@ -1,5 +1,5 @@
 import { createPost, getFeed } from "../services/post.api"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { PostContext } from "../Post.context"
 
 export const usePost = () => {
@@ -20,6 +20,10 @@ export const usePost = () => {
         setLoading(false)
 
     }
+
+    useEffect(() => {
+        handleGetFeed()
+    }, [])
 
     return { loading, feed, post, handleGetFeed, handleCreatePost }
 

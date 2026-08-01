@@ -19,9 +19,9 @@ export async function getFeed() {
 
 export async function createPost(imageFile, caption) {
 
-    const fromData = new FormData()
-    FormData.append("image", imageFilemage)
-    FormData.append("caption", caption)
+    const formData = new FormData()
+    formData.append("image", imageFile)
+    formData.append("caption", caption)
 
     const response = await api.post("/api/posts", formData)
 

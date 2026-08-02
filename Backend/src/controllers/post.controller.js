@@ -98,7 +98,7 @@ async function unLikePostController(req, res) {
     user: username
   })
 
-  is(!isLiked){
+  if(!isLiked){
     return res.status(400).json({
       message: "post didn't like"
     })

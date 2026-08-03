@@ -24,11 +24,13 @@ export const usePost = () => {
     const handleLike = async (post) => {
         setLoading(true)
         const data = await likePost(post)
+        await handleGetFeed()
         setLoading(false)
     }
     const handleUnLike = async (post) => {
         setLoading(true)
         const data = await unLikePost(post)
+        await handleGetFeed()
         setLoading(false)
     }
 

@@ -34,7 +34,7 @@ export async function likePost(postId) {
     return response.data
 }
 
-export async function postUnlike(postId) {
+export async function unLikePost(postId) {
     const response = await api.post("/api/posts/unlike" + postId)
     return response.data
 }
